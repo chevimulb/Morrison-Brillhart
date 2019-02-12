@@ -1,4 +1,5 @@
 def factorbase(N,k,n):
+	#Ermittelt die ersten n Primzahlen mit Legendresymbol!=1, und gegebenfalls Faktoren von N
 	p=primes_first_n(3*n)
 	factors=[]
 	m=1

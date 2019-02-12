@@ -1,4 +1,6 @@
 def reduction(e,h):
+	#Sucht nach linear abhängigen Zeilen von E und merkt sich Linearkombinationen in H
+	#Verfahren nach Morrison, Brillhart
 	j=e.ncols()-1
 	while j>=0:
 		if e.column(j)!=0:

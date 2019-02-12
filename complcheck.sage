@@ -1,4 +1,5 @@
 def complcheck(N,fac):
+	#Überprüft ob Faktorisierung komplett und ob alle Faktoren prim sind
 	i=0
 	f=2
 	while i<len(fac):

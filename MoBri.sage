@@ -17,7 +17,7 @@ def MoBri(N,k=None,FB=None,UB=None,LIM=None,QL=None):
 		LIM=input('Wie viele glatte Q sollen gesucht werden? Fuer LIM=0 wird ein Idealwert errechnet. Fuer LIM=-1 maximal viele. LIM=')
 	if QL==None:	
 		QL=input('Bis zu welchem Index soll die Folge Q hoechstens berrechnet werden? QL=')
-	if k==0:
+	if k==0: 				
 		l=list(primes(7,32))
 		i=1
 		comp1=0
@@ -97,10 +97,10 @@ def MoBri(N,k=None,FB=None,UB=None,LIM=None,QL=None):
 	start=time.time()
 	[factors,base]=factorbase(N,k,FB)
 	print "Faktoren in Faktorbasis gefunden:",factors
-	a=[-1]
+	a=[-1]							#Vektor der alle Faktoren der Q enthält
 	Qsmooth=[]
 	Asmooth=[]
-	E=matrix(ZZ,1,0,0)
+	E=matrix(ZZ,1,0,0)					#Matrix, die später Exponentenvektoren der glatten Q enthält
 	q=[floor(sqrt(N))]
 	P=[q[0]]
 	A=[q[0]]
@@ -150,7 +150,7 @@ def MoBri(N,k=None,FB=None,UB=None,LIM=None,QL=None):
 			Q.append(abs(Q[i-2])+(P[i-1]-P[i])*q[i])
 			if i%2==0:
 				Q[i]=-1*Q[i]
-			[check,a,e]=basecheck(Q[i],base,a,UB)
+			[check,a,e]=basecheck(Q[i],base,a,UB)					#basecheck überprüft Q auf Glätte und gibt Exponentenvektor e aus
 			if E!=0 and E.ncols()<len(a):
 				E=E.transpose()
 				while E.nrows()<len(a):
@@ -168,7 +168,7 @@ def MoBri(N,k=None,FB=None,UB=None,LIM=None,QL=None):
 			i=i+1
 			if limcheck==1:
 				LIM=lf*max(FB,(len(a)-1))
-		if E and E.rows()>elen:
+		if E and E.rows()>elen:								#Gaußverfahren nur wenn Anzahl glatter Q sich erhöht hat
 			h=identity_matrix(E.nrows())
 			set=reduction(E,h)
 			y=0
@@ -184,10 +184,10 @@ def MoBri(N,k=None,FB=None,UB=None,LIM=None,QL=None):
 				Qset=sqrt(Qset)
 				if gcd(Aset-Qset,N)!=1 and gcd(Aset-Qset,N)!=N:
 					factors=factorcheck(factors,gcd(Aset-Qset,N))
-					print gcd(Aset-Qset,N)
+					#print gcd(Aset-Qset,N)
 				if gcd(Aset+Qset,N)!=1 and gcd(Aset+Qset,N)!=N:
 					factors=factorcheck(factors,gcd(Aset+Qset,N))
-					print gcd(Aset+Qset,N)
+					#print gcd(Aset+Qset,N)
 				y=y+1
 				if complcheck(N,factors)[0]==2:
 					print "Primfaktorzerlegung komplett"
